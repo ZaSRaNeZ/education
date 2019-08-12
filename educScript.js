@@ -75,14 +75,13 @@ $('div#modal-overlay').css({
   'background':'no-repeat center center url(https://i.pinimg.com/originals/9b/53/d4/9b53d4eaf1ffb58eca857738ea925fbb.gif) rgba(0, 0, 0, 0.7)',
 })
 
-
 setTimeout(function(){
 $('div#modal-overlay').removeAttr('style');
 $('#modalEducation').css('display','block');
 
 Education();
 
-}, 1500);
+}, 2000);
 
 $('#next').click(function(){
 
