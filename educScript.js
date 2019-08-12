@@ -13,6 +13,8 @@ const text = (function () {
       xhr = new XMLHttpRequest();
    xhr.open('GET', app);
    xhr.onreadystatechange = function() {
+
+    
      if (xhr.readyState !== 4) return;
 
      if (xhr.status == 200) {
@@ -67,12 +69,17 @@ $('#modalEducation').css({
 
 
 };
+$('div#modal-overlay').css({
 
+  'display':'block',
+  'background':'no-repeat center center url(https://i.pinimg.com/originals/9b/53/d4/9b53d4eaf1ffb58eca857738ea925fbb.gif) rgba(0, 0, 0, 0.7)',
+})
 
 
 setTimeout(function(){
-	
+$('div#modal-overlay').removeAttr('style');
 $('#modalEducation').css('display','block');
+
 Education();
 
 }, 1500);
