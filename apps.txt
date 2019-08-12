@@ -1,23 +1,23 @@
-Photoshop
-AIMP
+Photoshop +
+AIMP +
 Battle.net
-Brackets
-Sublime
+Brackets +
+Sublime +
 FileZilla
-GitHub
+GitHub + 
 Dropbox
-Chrome
-LightShot
-Office
-MPC
+Chrome + 
+LightShot + 
+Office +
+MPC+
 Microsoft visual studio
 Origin
 Postman
 Python
-Slack
+Slack +
 Telegram
 TotalCommander
 Viber
 WhatsApp
-Winrar
-X-Lite
+Winrar +
+X-Lite +
