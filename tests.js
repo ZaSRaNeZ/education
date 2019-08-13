@@ -83,14 +83,14 @@ $('div#modal-overlay').css({
 })
 
 
-setInterval(function(){
+let LoadTimer = setInterval(function(){
 
 if (text['LoadCheck']) {
 $('div#modal-overlay').removeAttr('style');
 $('#modalEducation').css('display','block');
 
 Education();
-
+clearInterval(LoadTimer);
   }
 return;
 
