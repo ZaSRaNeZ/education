@@ -12,6 +12,11 @@ const text = (function () {
       output = {},
       xhr = new XMLHttpRequest();
    xhr.open('GET', app);
+   xhr.onerror = function () {
+  alert('Не удалсоь загрузить инфу с таблицы');
+  window.location.reload();
+
+  };
    xhr.onreadystatechange = function() {
 
     

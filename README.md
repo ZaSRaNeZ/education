@@ -9,3 +9,4 @@ https://docs.google.com/spreadsheets/d/1DC04m23RiJiQOCPXmCcSFyG47vYF_ZW9KHotuOH7
 Исправления
 
 - Не запускаеться пока информация с Google таблицы не загрузиться в переменную
+- Добавлено оповещение при ошибке считывания информации с google талицы
