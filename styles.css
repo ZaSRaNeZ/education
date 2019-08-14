@@ -1,12 +1,13 @@
 #modalEducation {
 	position: absolute;
 	z-index: 1000;
-	width: 300px;
 	min-height: 150px;
 	background: #fff;
 	border-radius: 5px;
 	box-shadow: 0 0 10px #d0d6ff;
 	transition: all 0.4s ease 0s;
+	min-width: 300px;
+    max-width: 600px;
 }
 
 #EducationButtons {
