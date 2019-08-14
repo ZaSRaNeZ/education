@@ -52,13 +52,24 @@ function Education() {
     // изменение текста внутри блока
 
     $('#modalEducationText').html(text[menuButtons[ElIndex].innerText]);
+    let righDistance = document.documentElement.clientWidth - (modalLeft + $('#modalEducation').width());
+    console.log(righDistance);
 
-    $('#modalEducation').css({
+    if(righDistance < 0){
+       $('#modalEducation').css({
+
+        'top': modalTop + 10 + 'px',
+        'left': modalLeft + righDistance - 10 + 'px',
+    });
+    }else{
+
+       $('#modalEducation').css({
 
         'top': modalTop + 10 + 'px',
         'left': modalLeft + 10 + 'px',
     });
-
+    
+    }  
 };
 $('div#modal-overlay').css({
 
