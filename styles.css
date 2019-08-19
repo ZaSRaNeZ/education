@@ -62,3 +62,61 @@ div#modalEducationText img {
     max-width: 100%;
     margin-top: 40px;
 }
+
+
+
+
+
+ /*---------------------*/
+
+
+    div#modalEducation_start {
+        position: absolute;
+        top: calc(50% - 200px);
+        left: calc(50% - 300px);
+        z-index: 1000;
+        min-height: 150px;
+        background: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px #6ec4ff;
+        width: 600px;
+        height: 400px;
+    }
+
+    .startButtons {
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .start_button {
+        width: 45%;
+        height: 80px;
+        line-height: 80px;
+        text-align: center;
+        border: 2px solid #1a8ad8;
+        border-radius: 5px;
+        cursor: pointer;
+        user-select: none;
+        font-size: 24px;
+        color: #1a8ad8;
+        transition: 0.2s all;
+    }
+    
+    .startText{
+        text-align: center;
+        padding:40px; 
+        font-size: 1.2rem;
+    }
+    .startText>p{
+        color: #1d1d1d;
+    }
+    .startText>h2{
+        color: #1a8ad8;
+    }
+    .start_button:hover {
+    color: #fff;
+    background: #1a8ad8;
+}
