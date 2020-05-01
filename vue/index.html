@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div class="menu fl-l">
+        <div class="content"><a class="fl-l ">Старт</a>
+            <a class="fl-l ">Заказы</a>
+            <a class="fl-l ">Товары</a>
+            <a class="fl-l ">Клиенты</a>
+            <a class="fl-l ">Комментарии</a>
+            <a class="fl-l ">Страницы</a>
+            <a class="fl-l ">Баннеры</a>
+            <a class="fl-l active">Настройки</a>
+            <a class="fl-l ">Скидки</a>
+            <a class="fl-l ">Утилиты</a>
+            <a class="fl-l ">Маркетинговые системы</a>
+            <a class="fl-l ">Seo</a>
+            <a class="fl-l ">Отчеты</a>
+            <div class="clear"></div>
+        </div>
+        <!-- .content-->
+        <div class="clear"></div>
+    </div>
+    <div id="education-app">
+        <greetings v-if="greetingsShow"></greetings>
+        <modal-education v-if="educationBlockShow" v-bind:text="educationText"></modal-education>
+        <css></css>
+
+    </div>
+
+    <script src="vuecode.js"></script>
+</body>
+
+</html>
