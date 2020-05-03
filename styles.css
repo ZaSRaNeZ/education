@@ -18,6 +18,9 @@
 	display: flex;
 	justify-content: space-between;
 }
+ul{
+    padding-inline-start: 40px;
+}
 
 div#endEducation,
 div#next {
