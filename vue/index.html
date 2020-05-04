@@ -28,11 +28,30 @@
         <!-- .content-->
         <div class="clear"></div>
     </div>
+    <style>
+        .menu {
+            background-color: #1F262C;
+        }
+        
+        .menu a {
+            display: block;
+            padding: 0 8px;
+            color: #FFF;
+            line-height: 24px;
+            margin-top: 7px;
+        }
+        
+        .menu .content {
+            display: flex;
+            flex-wrap: wrap;
+        }
+    </style>
+
     <div id="education-app">
         <greetings v-if="greetingsShow"></greetings>
-        <modal-education v-if="educationBlockShow" v-bind:text="educationText"></modal-education>
+        <modal-education v-if="educationBlockShow && !(preloaderShow)" v-bind:text="educationText"></modal-education>
+        <preloader v-if="preloaderShow && !(greetingsShow)"></preloader>
         <css></css>
-
     </div>
 
     <script src="vuecode.js"></script>

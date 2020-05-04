@@ -1,4 +1,11 @@
-var educationScriptvue = '<div id="education-app"><greetings v-if="greetingsShow"></greetings><modal-education v-if="educationBlockShow" v-bind:text="educationText"></modal-education><css></css></div>';
+var educationScriptvue = `
+    <div id="education-app">
+        <greetings v-if="greetingsShow"></greetings>
+        <modal-education v-if="educationBlockShow && !(preloaderShow)" v-bind:text="educationText"></modal-education>
+        <preloader v-if="preloaderShow && !(greetingsShow)"></preloader>
+        <css></css>
+    </div>
+`;
 
 function educationScriptStartVue() {
 
@@ -143,6 +150,81 @@ function startVue() {
         max-width: 100%;
         margin-top: 40px;
     }
+
+
+    //===================================== Preloader
+
+    div#cube-loader {
+        align-items: center;
+        display: flex;
+        height: 100%;
+        width: 100%;
+        position: fixed;
+        z-index: 1000;
+    }
+    #cube-loader .caption {
+        margin: 0 auto;
+    }
+    #cube-loader .cube-loader {
+        width: 73px;
+        height: 73px;
+        margin: 0 auto;
+        margin-top: 20%;
+        position: relative;
+        transform: rotateZ(45deg);
+        z-index: 1000;
+    }
+    #cube-loader .cube-loader .cube {
+        position: relative;
+        transform: rotateZ(45deg);
+        width: 50%;
+        height: 50%;
+        float: left;
+        transform: scale(1.1);
+    }
+    #cube-loader .cube-loader .cube:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #6ec4ff;
+        animation: cube-loader 2.76s infinite linear both;
+        transform-origin: 100% 100%;
+    }
+    #cube-loader .cube-loader .loader-2 {
+        transform: scale(1.1) rotateZ(90deg);
+    }
+    #cube-loader .cube-loader .loader-3 {
+        transform: scale(1.1) rotateZ(180deg);
+    }
+    #cube-loader .cube-loader .loader-4 {
+        transform: scale(1.1) rotateZ(270deg);
+    }
+    #cube-loader .cube-loader .loader-2:before {
+        animation-delay: 0.35s;
+    }
+    #cube-loader .cube-loader .loader-3:before {
+        animation-delay: 0.69s;
+    }
+    #cube-loader .cube-loader .loader-4:before {
+        animation-delay: 1.04s;
+    }
+    @keyframes cube-loader {
+        0%, 10% {
+        transform: perspective(136px) rotateX(-180deg);
+        opacity: 0;
+        }
+        25%, 75% {
+        transform: perspective(136px) rotateX(0deg);
+        opacity: 1;
+        }
+        90%, 100% {
+        transform: perspective(136px) rotateY(180deg);
+        opacity: 0;
+        }
+    }
     </style>
     `
     })
@@ -169,16 +251,16 @@ function startVue() {
         </div>
     </div>
     `,
+        computed: {
+
+        },
         methods: {
             next: function() {
                 educationApp.currentElemetnToShow++;
                 this.text = educationApp.eduTextObj[educationApp.AllElementsToShow[educationApp.currentElemetnToShow].textContent];
                 this.x = Math.round(educationApp.AllElementsToShow[educationApp.currentElemetnToShow].getBoundingClientRect().bottom + window.pageYOffset);
                 this.y = Math.round(educationApp.AllElementsToShow[educationApp.currentElemetnToShow].getBoundingClientRect().left + window.pageXOffset);
-
             },
-
-
             endEducation: function() {
                 window.location.reload();
             }
@@ -206,14 +288,28 @@ function startVue() {
                 educationApp.educationBlockShow = true;
                 educationApp.showedElement = 0;
                 educationApp.educationText = educationApp.eduTextObj[educationApp.AllElementsToShow[educationApp.currentElemetnToShow].textContent];
+                educationApp.getData();
             },
-            //todo записивать в local Storage значение елемента для показа и проверять его
             continue: function() {
 
             },
         }
     })
 
+    Vue.component('preloader', {
+        template: `
+    <div id="cube-loader">
+        <div class="caption">
+        <div class="cube-loader">
+            <div class="cube loader-1"></div>
+            <div class="cube loader-2"></div>
+            <div class="cube loader-4"></div>
+            <div class="cube loader-3"></div>
+        </div>
+        </div>
+    </div>
+    `
+    })
 
     //=================  VUE app
 
@@ -228,9 +324,17 @@ function startVue() {
                 return document.querySelector('.menu.fl-l').querySelectorAll('.fl-l');
             })(),
             currentElemetnToShow: 0,
-            eduTextObj: (function() {
+            educationText: '',
+            preloaderShow: true,
+            eduTextObj: {}
+        },
+        computed: {},
+        watch: {},
+        methods: {
+            getData: function() {
                 var app = "https://script.google.com/macros/s/AKfycbzudkuxqqQoKn2Pp9ybnkcm_5IasX5AOichiAeWYi90J-8hJEQ/exec",
                     output = {},
+                    LoadCheck = false,
                     xhr = new XMLHttpRequest();
                 xhr.open('GET', app);
                 xhr.onerror = function() {
@@ -245,16 +349,16 @@ function startVue() {
                             for (var i = 0; i < result.length; i++) {
                                 var obj = r["result"][i];
                                 output[obj[0]] = obj[1];
-                                if (i == result.length - 1) output['LoadCheck'] = true;
+                                if (i == result.length - 1) LoadCheck = true;
                             }
                         } catch (e) {}
                     }
+                    educationApp.eduTextObj = output;
+                    educationApp.educationText = educationApp.eduTextObj[educationApp.AllElementsToShow[educationApp.currentElemetnToShow].textContent];
+                    educationApp.preloaderShow = !(LoadCheck);
                 }
                 xhr.send()
-                return output;
-            })(),
-            educationText: ''
-        },
-        methods: {}
+            }
+        }
     })
 }
