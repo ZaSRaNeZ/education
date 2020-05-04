@@ -237,16 +237,13 @@ function startVue() {
                     return 'Не удалсоь загрузить инфу с таблицы';
                 };
                 xhr.onreadystatechange = function() {
-
                     if (xhr.readyState !== 4) return;
-
                     if (xhr.status == 200) {
                         try {
                             var r = JSON.parse(xhr.responseText),
                                 result = r["result"];
                             for (var i = 0; i < result.length; i++) {
                                 var obj = r["result"][i];
-
                                 output[obj[0]] = obj[1];
                                 if (i == result.length - 1) output['LoadCheck'] = true;
                             }
